@@ -1,0 +1,95 @@
+buildscript {
+	repositories {
+		mavenLocal()
+		maven { url 'https://maven.aliyun.com/repository/google/' }
+		maven { url 'https://maven.aliyun.com/repository/public/' }
+		maven { url 'https://maven.aliyun.com/repository/spring/' }
+		maven { url 'https://maven.aliyun.com/repository/gradle-plugin/' }
+		maven { url 'https://maven.aliyun.com/repository/spring-plugin/' }
+
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.4.5.RELEASE")
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.4.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+repositories {
+	mavenLocal()
+	maven {
+		url = uri('https://repo1.maven.org/maven2/')
+	}
+
+	maven {
+		url = uri('https://maven.egovframe.go.kr/maven/')
+	}
+
+	maven {
+		url = uri('https://repo.maven.apache.org/maven2/')
+	}
+
+	maven {
+		url "https://maven.egovframe.go.kr/maven/"
+		metadataSources {
+			artifact()
+		}
+	}
+}
+
+group = 'com.addone'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.45'
+	implementation 'org.egovframe.rte:org.egovframe.rte.ptl.mvc:4.0.0'
+	implementation 'org.egovframe.rte:org.egovframe.rte.psl.dataaccess:4.0.0'
+	implementation 'org.egovframe.rte:org.egovframe.rte.fdl.idgnr:4.0.0'
+	implementation 'org.egovframe.rte:org.egovframe.rte.fdl.property:4.0.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+configurations {
+	all {
+		exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+		exclude group: 'ch.qos.logback', module: 'logback-classic'
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
