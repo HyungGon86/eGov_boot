@@ -1,4 +1,4 @@
-package com.addone.test;
+package com.egovboot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
