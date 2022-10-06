@@ -1,6 +1,6 @@
 package com.egovboot.config;
 
-import com.egovboot.interseptor.LoggerInterceptor;
+import com.egovboot.interceptor.LoggerInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
